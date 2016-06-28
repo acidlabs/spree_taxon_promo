@@ -27,8 +27,10 @@ function setAutocomplete() {
       minimumInputLength: 2,
       initSelection: function (element, callback) {
         var url = Spree.url(Spree.routes.taxons_search, {
-          ids: element.val()
+          ids: element.val(),
+          token: Spree.api_key
         });
+
         return $.getJSON(url, null, function (data) {
           return callback(data['taxons'][0]);
         });
